@@ -1,6 +1,6 @@
 function LandingScreen() {
   return (
-    <div>
+    <div className="bg-custom-light-100">
       <header className=" bg-custom-light-100 w-full flex items-center gap-8 px-16 top-0">
         <div className="logo">
           <img
@@ -32,10 +32,12 @@ function LandingScreen() {
           </ul>
         </div>
       </header>
-      <main className="home m-96">
-        <h2>Main</h2>
+      <main className="home my-6 ml-20  bg-custom-light-100 w-full">
+        <div className="box-1 flex left-4 font-bold">
+          <h1 className="text-5xl">Temukan Pekerjaan <br /> Freelance Impianmu</h1>
+        </div>
       </main>
-      <footer className=" bg-custom-footer flex items-center w-full p-16">
+      <footer className=" bg-custom-footer flex justify-center w-full p-16">
         <h2> &copy; SpaceWorks</h2>
       </footer>
     </div>
