@@ -53,10 +53,10 @@ function LandingScreen() {
             Cari
           </button>
         </div>
-        <div className="box-2">
+        <div className="box-2 my-20 ml-28">
           <h2>DAFTAR SEKARANG, GRATIS!</h2>
-          <button className="">Daftar</button>
-          <button className="">Masuk</button>
+          <button className="mt-7 bg-custom-light-400 rounded-xl p-2" >Daftar</button>
+          <button className="mt-7 ml-16 bg-custom-light-400  p-2 rounded-xl">Masuk</button>
         </div>
       </main>
       <footer className=" bg-custom-footer flex justify-center w-full p-16">
