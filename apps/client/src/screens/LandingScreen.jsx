@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
 function LandingScreen() {
   return (
-    <div className="bg-custom-primary">
+    <div className="bg-custom-light">
       <header className=" bg-custom-light-100 w-full flex items-center gap-8 px-16 top-0">
         <div className="logo">
           <img
@@ -46,7 +46,7 @@ function LandingScreen() {
             <MapPinIcon className="h-6" />
             <input type="text" placeholder="Kota" />
           </div>
-          <button className="px-4 py-2 flex rounded-3xl bg-custom-light-500 font-bold">
+          <button className="px-4 py-2 flex rounded-3xl bg-custom-primary font-bold">
             Cari
           </button>
         </div>
@@ -55,7 +55,7 @@ function LandingScreen() {
           <button className="mt-7 bg-custom-button text-white rounded-xl p-2 font-bold">
             Daftar
           </button>
-          <button className="mt-7 ml-16 bg-custom-button text-white p-2 rounded-xl font-bold">
+          <button className="mt-7 ml-12 bg-custom-button text-white p-2 rounded-xl font-bold">
             Masuk
           </button>
         </div>
@@ -69,11 +69,11 @@ function LandingScreen() {
         <div className="footer-1 w-full bg-custom-secondary py-16 justify-center flex ">
           <div className="flex flex-col gap-4 items-center">
             <h2 className="text-5xl font-bold text-white">Raih pekerjaan impianmu!</h2>
-            <button className=" bg-custom-light-500 rounded-xl p-2 font-bold  ">Daftar Sekarang</button>
+            <button className=" bg-custom-primary rounded-xl p-2 font-bold  ">Daftar Sekarang</button>
           </div>
         </div>
         <div className="footer-2 bg-custom-footer w-full py-16 items-center">
-          <h2 className="text-center"> &copy; SpaceWorks</h2>
+          <h2 className="text-center text-white"> &copy; SpaceWorks</h2>
         </div>
       </footer>
     </div>

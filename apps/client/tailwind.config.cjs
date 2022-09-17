@@ -8,17 +8,11 @@ module.exports = {
       },
       colors: {
         custom: {
-
-          primary: "#FCF7EE",
+          footer:"#000000",
+          primary: "#FFF73E",
           secondary: "#C16060",
-          footer:"#D9D9D9",
           button:"#12355B",
-          light: {
-            500: "#FFF73E",
-            400: "#E3DD40",
-            200: "#F5FFBA",
-            100: "#FCFFEB",
-          },
+          light: "#FCF7EE"
         },
       },
     },
