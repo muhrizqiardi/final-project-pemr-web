@@ -35,7 +35,7 @@ function LandingScreen() {
       <main className="home m-96">
         <h2>Main</h2>
       </main>
-      <footer className=" bg-custom-footer flex items-center m-96 w-full p-16">
+      <footer className=" bg-custom-footer flex items-center w-full p-16">
         <h2> &copy; SpaceWorks</h2>
       </footer>
     </div>
