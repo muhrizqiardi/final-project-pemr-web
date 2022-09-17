@@ -32,9 +32,22 @@ function LandingScreen() {
           </ul>
         </div>
       </header>
-      <main className="home my-6 ml-20  bg-custom-light-100 w-full">
-        <div className="box-1 flex left-4 font-bold">
-          <h1 className="text-5xl">Temukan Pekerjaan <br /> Freelance Impianmu</h1>
+      <main className="home my-6 bg-custom-light-100 w-full">
+        <div className="ml-20 mb-8 flex font-bold">
+          <h1 className="text-5xl">
+            Temukan Pekerjaan <br /> Freelance Impianmu
+          </h1>
+        </div>
+        <div className="px-16 py-8 bg-custom-secondary flex gap-8">
+          <div className="px-4 py-2 flex rounded-3xl bg-white">
+            <input type="text" />
+          </div>
+          <div className="px-4 py-2 flex rounded-3xl bg-white">
+            <input type="text" />
+          </div>
+          <button className="px-4 py-2 flex rounded-3xl bg-custom-primary">
+            Cari
+          </button>
         </div>
       </main>
       <footer className=" bg-custom-footer flex justify-center w-full p-16">
