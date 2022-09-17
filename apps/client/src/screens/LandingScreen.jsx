@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
 function LandingScreen() {
   return (
-    <div className="bg-custom-light-100">
+    <div className="bg-custom-primary">
       <header className=" bg-custom-light-100 w-full flex items-center gap-8 px-16 top-0">
         <div className="logo">
           <img
@@ -14,22 +14,19 @@ function LandingScreen() {
         <div className="">
           <ul className="flex gap-8">
             <li>
-              <a href="">Cari Lowongan</a>
+              <a href="#">Cari Lowongan</a>
             </li>
             <li>
-              <a href="">Blog</a>
+              <a href="#">Blog</a>
             </li>
             <li>
-              <a href="">Komunitas</a>
-            </li>
-            <li>
-              <a href="">Tentang Kami</a>
+              <a href="#">Tentang Kami</a>
             </li>
             <li className="">
-              <a href="">Daftar</a>
+              <a href="#">Daftar</a>
             </li>
             <li>
-              <a href="">Masuk</a>
+              <a href="#">Masuk</a>
             </li>
           </ul>
         </div>
@@ -46,28 +43,33 @@ function LandingScreen() {
             <input type="text" placeholder="Cari lowongan" />
           </div>
           <div className="px-4 py-2 flex rounded-3xl bg-white gap-2">
-            <MapPinIcon className="h-6 " />
+            <MapPinIcon className="h-6" />
             <input type="text" placeholder="Kota" />
           </div>
-          <button className="px-4 py-2 flex rounded-3xl bg-custom-primary">
+          <button className="px-4 py-2 flex rounded-3xl bg-custom-light-500 font-bold">
             Cari
           </button>
         </div>
         <div className="box-2 my-20 ml-28">
           <h2>DAFTAR SEKARANG, GRATIS!</h2>
-          <button className="mt-7 bg-custom-light-400 rounded-xl p-2 font-bold">
+          <button className="mt-7 bg-custom-button text-white rounded-xl p-2 font-bold">
             Daftar
           </button>
-          <button className="mt-7 ml-16 bg-custom-light-400  p-2 rounded-xl font-bold">
+          <button className="mt-7 ml-16 bg-custom-button text-white p-2 rounded-xl font-bold">
             Masuk
           </button>
+        </div>
+
+        <div className="box-3">
+          <h2>Punya Pertanyaan...</h2>
+          <h2>seputar </h2>
         </div>
       </main>
       <footer className=" flex-col w-full">
         <div className="footer-1 w-full bg-custom-secondary py-16 justify-center flex ">
           <div className="flex flex-col gap-4 items-center">
             <h2 className="text-5xl font-bold text-white">Raih pekerjaan impianmu!</h2>
-            <button className=" bg-custom-light-400 rounded-xl p-2 font-bold">Daftar Sekarang</button>
+            <button className=" bg-custom-light-500 rounded-xl p-2 font-bold  ">Daftar Sekarang</button>
           </div>
         </div>
         <div className="footer-2 bg-custom-footer w-full py-16 items-center">
