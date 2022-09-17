@@ -31,7 +31,7 @@ function LandingScreen() {
           </ul>
         </div>
       </header>
-      <main className="home my-6 bg-custom-light-100 w-full">
+      <main className="home bg-custom-light-100 w-full">
         <div className="ml-20 mb-8 flex font-bold">
           <h1 className="text-5xl">
             Temukan Pekerjaan <br /> Freelance Impianmu
