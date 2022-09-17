@@ -1,7 +1,7 @@
 function LandingScreen() {
   return (
     <div>
-      <header className="fixed bg-custom-light-100 w-full flex items-center gap-8 px-16">
+      <header className=" bg-custom-light-100 w-full flex items-center gap-8 px-16 top-0">
         <div className="logo">
           <img
             src="./src/assets/[Transparet Background] SpaceWork LOGO - 160922.png"
@@ -9,7 +9,7 @@ function LandingScreen() {
             className="w-36"
           />
         </div>
-        <div className="p">
+        <div className="">
           <ul className="flex gap-8">
             <li>
               <a href="">Cari Lowongan</a>
@@ -23,7 +23,7 @@ function LandingScreen() {
             <li>
               <a href="">Tentang Kami</a>
             </li>
-            <li className="ml-auto">
+            <li className="">
               <a href="">Daftar</a>
             </li>
             <li>
@@ -32,7 +32,12 @@ function LandingScreen() {
           </ul>
         </div>
       </header>
-      <main className="home"></main>
+      <main className="home m-96">
+        <h2>Main</h2>
+      </main>
+      <footer className=" bg-custom-footer flex items-center m-96 w-full p-16">
+        <h2> &copy; SpaceWorks</h2>
+      </footer>
     </div>
   );
 }
