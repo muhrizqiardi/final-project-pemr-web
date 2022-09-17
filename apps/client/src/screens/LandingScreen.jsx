@@ -1,3 +1,5 @@
+import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/solid";
+
 function LandingScreen() {
   return (
     <div className="bg-custom-light-100">
@@ -39,10 +41,12 @@ function LandingScreen() {
           </h1>
         </div>
         <div className="px-16 py-8 bg-custom-secondary flex gap-8">
-          <div className="box-1 px-4 py-2 flex rounded-3xl bg-white">
+          <div className="box-1 px-4 py-2 flex rounded-3xl bg-white gap-2">
+            <MagnifyingGlassIcon className="h-6 " />
             <input type="text" placeholder="Cari lowongan" />
           </div>
-          <div className="px-4 py-2 flex rounded-3xl bg-white">
+          <div className="px-4 py-2 flex rounded-3xl bg-white gap-2">
+            <MapPinIcon className="h-6 " />
             <input type="text" placeholder="Kota" />
           </div>
           <button className="px-4 py-2 flex rounded-3xl bg-custom-primary">
