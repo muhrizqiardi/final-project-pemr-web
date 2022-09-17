@@ -39,7 +39,7 @@ function LandingScreen() {
           </h1>
         </div>
         <div className="px-16 py-8 bg-custom-secondary flex gap-8">
-          <div className="px-4 py-2 flex rounded-3xl bg-white">
+          <div className="box-1 px-4 py-2 flex rounded-3xl bg-white">
             <input type="text" placeholder="Cari lowongan" />
           </div>
           <div className="px-4 py-2 flex rounded-3xl bg-white">
@@ -48,6 +48,11 @@ function LandingScreen() {
           <button className="px-4 py-2 flex rounded-3xl bg-custom-primary">
             Cari
           </button>
+        </div>
+        <div className="box-2">
+          <h2>DAFTAR SEKARANG, GRATIS!</h2>
+          <button className="">Daftar</button>
+          <button className="">Masuk</button>
         </div>
       </main>
       <footer className=" bg-custom-footer flex justify-center w-full p-16">
