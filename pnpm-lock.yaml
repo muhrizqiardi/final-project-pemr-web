@@ -4,16 +4,19 @@ importers:
 
   apps/client:
     specifiers:
+      '@heroicons/react': ^2.0.11
       '@tanstack/react-location': ^3.7.4
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^2.1.0
       autoprefixer: ^10.4.11
+      postcss: ^8.4.16
       react: ^18.2.0
       react-dom: ^18.2.0
       tailwindcss: ^3.1.8
       vite: ^3.1.0
     dependencies:
+      '@heroicons/react': 2.0.11_react@18.2.0
       '@tanstack/react-location': 3.7.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -21,8 +24,9 @@ importers:
       '@types/react': 18.0.20
       '@types/react-dom': 18.0.6
       '@vitejs/plugin-react': 2.1.0_vite@3.1.0
-      autoprefixer: 10.4.11
-      tailwindcss: 3.1.8
+      autoprefixer: 10.4.11_postcss@8.4.16
+      postcss: 8.4.16
+      tailwindcss: 3.1.8_postcss@8.4.16
       vite: 3.1.0
 
 packages:
@@ -310,6 +314,14 @@ packages:
     dev: true
     optional: true
 
+  /@heroicons/react/2.0.11_react@18.2.0:
+    resolution: {integrity: sha512-bASjOgSSaYj8HqXWsOqaBiB6ZLalE/g90WYGgZ5lPm4KCCG7wPXntY4kzHf5NrLh6UBAcnPwvbiw1Ne9GYfJtw==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
     engines: {node: '>=6.0.0'}
@@ -460,7 +472,7 @@ packages:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
     dev: true
 
-  /autoprefixer/10.4.11:
+  /autoprefixer/10.4.11_postcss@8.4.16:
     resolution: {integrity: sha512-5lHp6DgRodxlBLSkzHOTcufWFflH1ewfy2hvFQyjrblBFlP/0Yh4O/Wrg4ow8WRlN3AAUFFLAQwX8hTptzqVHg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -472,6 +484,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
+      postcss: 8.4.16
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -1210,10 +1223,12 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tailwindcss/3.1.8:
+  /tailwindcss/3.1.8_postcss@8.4.16:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
