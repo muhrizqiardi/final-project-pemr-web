@@ -40,10 +40,10 @@ function LandingScreen() {
         </div>
         <div className="px-16 py-8 bg-custom-secondary flex gap-8">
           <div className="px-4 py-2 flex rounded-3xl bg-white">
-            <input type="text" />
+            <input type="text" placeholder="Cari lowongan" />
           </div>
           <div className="px-4 py-2 flex rounded-3xl bg-white">
-            <input type="text" />
+            <input type="text" placeholder="Kota" />
           </div>
           <button className="px-4 py-2 flex rounded-3xl bg-custom-primary">
             Cari
