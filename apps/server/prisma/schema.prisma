@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id_admin      Int    @id @default(autoincrement())
+  username      String @db.VarChar(50)
+  password      String @db.VarChar(50)
+  fullname      String @db.VarChar(50)
+  email         String @db.Text
+  profilpicture String @db.Text
+  role          String @db.VarChar(50)
+}
+
+model company {
+  id_company     String     @id @db.VarChar(50)
+  username       String     @db.VarChar(50)
+  password       String     @db.VarChar(50)
+  nama_company   String     @db.Text
+  alamat_company String     @db.Text
+  no_telepon     Int
+  email_company  String     @db.VarChar(50)
+  npwp           String     @db.VarChar(50)
+  role           String     @db.VarChar(50)
+  profilpicture  String     @db.Text
+  lowongan       lowongan[]
+}
+
+model jobseeker {
+  id_jobseeker  String        @id @db.VarChar(50)
+  username      String        @db.VarChar(50)
+  password      String        @db.VarChar(50)
+  nama          String        @db.VarChar(200)
+  umur          Int
+  agama         String        @db.VarChar(50)
+  gender        String        @db.VarChar(20)
+  alamat        String        @db.Text
+  no_hp         Int
+  email         String        @db.VarChar(100)
+  pendidikan    String        @db.Text
+  skill         String        @db.Text
+  pengalaman    String        @db.Text
+  role          String        @db.VarChar(50)
+  profilpicture String        @db.Text
+  pendaftaran   pendaftaran[]
+}
+
+model lowongan {
+  id_loker    String        @id @db.VarChar(50)
+  nama_loker  String        @db.Text
+  posisi      String        @db.Text
+  kualifikasi String        @db.Text
+  tgl_rilis   DateTime      @db.Date
+  batas_waktu DateTime      @db.Date
+  id_company  String        @db.VarChar(50)
+  company     company       @relation(fields: [id_company], references: [id_company], onDelete: Cascade, map: "lowongan_ibfk_1")
+  pendaftaran pendaftaran[]
+
+  @@index([id_company], map: "id_company")
+}
+
+model pendaftaran {
+  id_pendaftaran   String    @id @db.VarChar(50)
+  tgl_daftar       DateTime  @db.Date
+  alasan_mendaftar String    @db.Text
+  id_jobseeker     String    @db.VarChar(50)
+  id_loker         String    @db.VarChar(50)
+  lowongan         lowongan  @relation(fields: [id_loker], references: [id_loker], onDelete: Cascade, map: "pendaftaran_ibfk_1")
+  jobseeker        jobseeker @relation(fields: [id_jobseeker], references: [id_jobseeker], onDelete: Cascade, map: "pendaftaran_ibfk_2")
+
+  @@index([id_jobseeker], map: "id_jobseeker")
+  @@index([id_loker], map: "id_loker")
+}
