@@ -3,7 +3,7 @@ const prisma = require("../helpers/prisma");
 function jobseekers(fastify, options, done) {
   fastify.post("/jobseekers", (request, reply) => {
     try {
-      const newJobseeker = prisma.jobseeker.create({ data: reply.body });
+      const newJobseeker = prisma.jobseeker.create({ data: request.body });
 
       reply.status(201).send({
         code: 201,
