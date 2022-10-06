@@ -17,3 +17,7 @@ const createJobseekerSchema = {
     profilepicture: Type.String({ format: "uri" }),
   },
 };
+
+module.exports = {
+  createJobseekerSchema,
+};
