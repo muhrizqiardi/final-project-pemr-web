@@ -44,11 +44,13 @@ importers:
       fastify: ^4.6.0
       nodemon: ^2.0.20
       prisma: ^4.3.1
+      uuid: ^9.0.0
     dependencies:
       '@fastify/swagger': 7.6.1
       '@sinclair/typebox': 0.24.44
       fastify: 4.6.0
       prisma: 4.3.1
+      uuid: 9.0.0
     devDependencies:
       '@prisma/client': 4.3.1_prisma@4.3.1
       nodemon: 2.0.20
@@ -1984,6 +1986,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /vite/3.1.0:
     resolution: {integrity: sha512-YBg3dUicDpDWFCGttmvMbVyS9ydjntwEjwXRj2KBFwSB8SxmGcudo1yb8FW5+M/G86aS8x828ujnzUVdsLjs9g==}

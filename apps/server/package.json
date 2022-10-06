@@ -13,7 +13,8 @@
     "@fastify/swagger": "^7.6.1",
     "@sinclair/typebox": "^0.24.44",
     "fastify": "^4.6.0",
-    "prisma": "^4.3.1"
+    "prisma": "^4.3.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@prisma/client": "^4.3.1",
