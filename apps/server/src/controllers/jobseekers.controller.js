@@ -2,9 +2,9 @@ const prisma = require("../helpers/prisma");
 const { createJobseekerSchema } = require("../schemas/jobseeker.schema");
 
 function jobseekers(fastify, options, done) {
-  fastify.post("/jobseekers", createJobseekerSchema, (request, reply) => {
+  fastify.post("/jobseekers", createJobseekerSchema, async (request, reply) => {
     try {
-      const newJobseeker = prisma.jobseeker.create({ data: request.body });
+      const newJobseeker = await prisma.jobseeker.create({ data: request.body });
 
       reply.status(201).send({
         code: 201,
