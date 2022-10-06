@@ -28,10 +28,12 @@ importers:
   apps/server:
     specifiers:
       '@prisma/client': ^4.3.1
+      '@sinclair/typebox': ^0.24.44
       fastify: ^4.6.0
       nodemon: ^2.0.20
       prisma: ^4.3.1
     dependencies:
+      '@sinclair/typebox': 0.24.44
       fastify: 4.6.0
       prisma: 4.3.1
     devDependencies:
@@ -425,6 +427,10 @@ packages:
   /@prisma/engines/4.3.1:
     resolution: {integrity: sha512-4JF/uMaEDAPdcdZNOrnzE3BvrbGpjgV0FcPT3EVoi6I86fWkloqqxBt+KcK/+fIRR0Pxj66uGR9wVH8U1Y13JA==}
     requiresBuild: true
+
+  /@sinclair/typebox/0.24.44:
+    resolution: {integrity: sha512-ka0W0KN5i6LfrSocduwliMMpqVgohtPFidKdMEOUjoOFCHcOOYkKsPRxfs5f15oPNHTm6ERAm0GV/+/LTKeiWg==}
+    dev: false
 
   /@tanstack/react-location/3.7.4_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-6rH2vNHGr0uyeUz5ZHvWMYjeYKGgIKFzvs5749QtnS9f+FU7t7fQE0hKZAzltBZk82LT7iYbcHBRyUg2lW13VA==}
