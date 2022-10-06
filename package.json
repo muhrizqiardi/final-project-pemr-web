@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "client:dev": "pnpm -F client dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server:watch": "pnpm -F server exec nodemon index.js"
+    "server:watch": "pnpm -F server exec nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
