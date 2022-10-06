@@ -3,19 +3,19 @@ const { Type } = require("@sinclair/typebox");
 const createJobseekerSchema = {
   schema: {
     body: Type.Object({
-      username: Type.String({ pattern: "/[A-Za-z0-9_-]+/" }),
+      username: Type.String({ pattern: "^[A-Za-z][A-Za-z0-9_]{7,29}$" }),
       password: Type.String({ minLength: 8 }),
-      nama_company: Type.String(),
+      nama: Type.String(),
       gender: Type.String(),
       alamat: Type.String(),
-      no_hp: Type.String({
-        pattern: "/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$/",
-      }),
+      no_hp: Type.Number(),
       email: Type.String({ format: "email" }),
       pendidikan: Type.String(),
       skill: Type.String(),
       pengalaman: Type.String(),
-      profilepicture: Type.String({ format: "uri" }),
+      profilpicture: Type.String({ format: "uri" }),
+      umur: Type.Number(),
+      agama: Type.String(),
     }),
   },
 };
