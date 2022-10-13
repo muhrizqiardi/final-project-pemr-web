@@ -22,7 +22,7 @@ function SignUpJobseekerScreen() {
       </header>
 
       <div className="mb-24 grid grid-cols-2">
-        <div className="h-min bg-[rgb(51,15,10)] p-16 sticky top-0">
+        <div className="sticky top-0 h-min bg-[rgb(51,15,10)] p-16">
           <img src="./src/assets/batik-signup-jobseeker.png" alt="" />
         </div>
         <div className="bg-[#F4FDAF] p-16">
@@ -30,19 +30,21 @@ function SignUpJobseekerScreen() {
             action=""
             className="flex flex-col items-center justify-center gap-4  "
           >
-            <div className="text-center text-custom-text_red">
-              <p className="text-4xl font-bold">Dafter ke SpaceWork</p>
-              <p className="">
-                sebagai <span className="italic">jobseeker</span>
-              </p>
-            </div>
             <img
               src="./src/assets/[Transparent Background] [Shape Only] SpaceWork LOGO - 160922.png"
               alt=""
               className="h-16 w-16"
             />
+            <div className="text-center text-custom-text_red">
+              <p className="text-4xl font-bold">Dafter ke SpaceWork</p>
+              <p className="text-3xl font-light ">
+                sebagai{" "}
+                <span className="text-3xl font-light italic">jobseeker</span>
+              </p>
+            </div>
+
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Email</span>
+              <span className="mb-2 text-sm font-bold">Email</span>
               <input
                 type="email"
                 required
@@ -52,7 +54,7 @@ function SignUpJobseekerScreen() {
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Nama Lengkap</span>
+              <span className="mb-2 text-sm font-bold">Nama Lengkap</span>
               <input
                 type="text"
                 required
@@ -61,8 +63,8 @@ function SignUpJobseekerScreen() {
               />
             </label>
 
-            <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Password</span>
+            <label className="flex w-full flex-col ">
+              <span className="mb-2 text-sm font-bold ">Password</span>
               <input
                 type="text"
                 required
@@ -72,7 +74,7 @@ function SignUpJobseekerScreen() {
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Alamat Lengkap</span>
+              <span className="mb-2 text-sm font-bold">Alamat Lengkap</span>
               <textarea
                 required
                 rows="4"
@@ -81,7 +83,7 @@ function SignUpJobseekerScreen() {
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Nomor Telepon</span>
+              <span className="mb-2 text-sm font-bold">Nomor Telepon</span>
               <input
                 type="tel"
                 required
@@ -91,7 +93,7 @@ function SignUpJobseekerScreen() {
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm">Jenis Kelamin</span>
+              <span className="mb-2 text-sm font-bold">Jenis Kelamin</span>
               <select
                 name=""
                 id=""
@@ -112,6 +114,21 @@ function SignUpJobseekerScreen() {
             <button className="w-full rounded bg-custom-button py-3 px-4 text-white">
               Daftar
             </button>
+            <button className="w-full rounded bg-custom-button py-3 px-4 text-white">
+              <div>
+                <span className="">
+                  <i className=""></i>
+                </span>
+                <span className="p">Masuk dengan Google</span>
+              </div>
+            </button>
+
+            <span className="">
+              Sudah punya akun?
+              <a href="/login">
+                <u className="font-bold">Login</u>
+              </a>
+            </span>
           </form>
         </div>
       </div>
