@@ -3,76 +3,114 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model admin {
-  id_admin      Int    @id @default(autoincrement())
-  username      String @db.VarChar(50)
-  password      String @db.VarChar(50)
-  fullname      String @db.VarChar(50)
-  email         String @db.Text
-  profilpicture String @db.Text
-  role          String @db.VarChar(50)
+model Jobseeker {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email                  String                @unique
+  password               String
+  fullName               String
+  description            String
+  profilePictureUrl      String
+  resumeUrl              String
+  birthDate              DateTime
+  gender                 String
+  address                String
+  cityCode               String
+  countryCode            String
+  educations             JobseekerEducation[]
+  experiences            JobseekerExperience[]
+  skills                 JobseekerSkill[]
+  jobVacancyApplications Application[]
 }
 
-model company {
-  id_company     String     @id @db.VarChar(50)
-  username       String     @db.VarChar(50)
-  password       String     @db.VarChar(50)
-  nama_company   String     @db.Text
-  alamat_company String     @db.Text
-  no_telepon     Int
-  email_company  String     @db.VarChar(50)
-  npwp           String     @db.VarChar(50)
-  role           String     @db.VarChar(50)
-  profilpicture  String     @db.Text
-  lowongan       lowongan[]
+model JobseekerEducation {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  schoolName  String
+  start       DateTime
+  finish      DateTime
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
 }
 
-model jobseeker {
-  id_jobseeker  String        @id @db.VarChar(50)
-  username      String        @db.VarChar(50)
-  password      String        @db.VarChar(50)
-  nama          String        @db.VarChar(200)
-  umur          Int
-  agama         String        @db.VarChar(50)
-  gender        String        @db.VarChar(20)
-  alamat        String        @db.Text
-  no_hp         Int
-  email         String        @db.VarChar(100)
-  pendidikan    String        @db.Text
-  skill         String        @db.Text
-  pengalaman    String        @db.Text
-  role          String        @db.VarChar(50)
-  profilpicture String        @db.Text
-  pendaftaran   pendaftaran[]
+model JobseekerExperience {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  companyName String
+  start       DateTime
+  finish      DateTime
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
 }
 
-model lowongan {
-  id_loker    String        @id @db.VarChar(50)
-  nama_loker  String        @db.Text
-  posisi      String        @db.Text
-  kualifikasi String        @db.Text
-  tgl_rilis   DateTime      @db.Date
-  batas_waktu DateTime      @db.Date
-  id_company  String        @db.VarChar(50)
-  company     company       @relation(fields: [id_company], references: [id_company], onDelete: Cascade, map: "lowongan_ibfk_1")
-  pendaftaran pendaftaran[]
+model JobseekerSkill {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@index([id_company], map: "id_company")
+  skillName   String
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
 }
 
-model pendaftaran {
-  id_pendaftaran   String    @id @db.VarChar(50)
-  tgl_daftar       DateTime  @db.Date
-  alasan_mendaftar String    @db.Text
-  id_jobseeker     String    @db.VarChar(50)
-  id_loker         String    @db.VarChar(50)
-  lowongan         lowongan  @relation(fields: [id_loker], references: [id_loker], onDelete: Cascade, map: "pendaftaran_ibfk_1")
-  jobseeker        jobseeker @relation(fields: [id_jobseeker], references: [id_jobseeker], onDelete: Cascade, map: "pendaftaran_ibfk_2")
+model JobVacancy {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@index([id_jobseeker], map: "id_jobseeker")
-  @@index([id_loker], map: "id_loker")
+  title        String
+  description  String
+  companyId    Int
+  company      Company       @relation(fields: [companyId], references: [id])
+  applications Application[]
+}
+
+model Application {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobVacancyId Int?
+  jobVacancy   JobVacancy? @relation(fields: [jobVacancyId], references: [id])
+  jobseeker    Jobseeker?  @relation(fields: [jobseekerId], references: [id])
+  jobseekerId  Int?
+
+  status ApplicationStatus
+
+  @@unique([jobVacancyId, jobseekerId])
+}
+
+model Company {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email             String       @unique
+  password          String
+  name              String
+  description       String
+  profilePictureUrl String
+  address           String
+  cityCode          String
+  countryCode       String
+  phoneNumber       String
+  website           String
+  jobVacancies      JobVacancy[]
+}
+
+enum ApplicationStatus {
+  NOT_YET_RESPONDED
+  ACCEPTED
+  REJECTED
 }
