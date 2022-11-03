@@ -7,7 +7,7 @@ import logoImage from "../assets/logo.png";
 import logotextImage from "../assets/logotext.png";
 import batikImage from "../assets/batik-signup-jobseeker.png";
 
-function SignUpJobseekerScreen() {
+export default function SignUpCompanyScreen() {
   const [isLoading, setIsLoading] = useState(false);
   const { isError, setError, errorMessage } = useError();
   const { register, handleSubmit } = useForm();
@@ -16,11 +16,21 @@ function SignUpJobseekerScreen() {
   const onSubmit = async (data) => {
     console.log({ data });
     try {
-      await axiosInstance.post("/jobseekers", {
+      await axiosInstance.post("/companies", {
         ...data,
       });
 
-      navigate({ to: "/login/jobseekers", replace: false });
+      const loginResult = await axiosInstance.post("/companies-auth", {
+        email: data.email,
+        password: data.password,
+      });
+
+      if (!loginResult) throw new Error("");
+      
+      localStorage.setItem("token", JSON.stringify(loginResult.data.data));
+      localStorage.setItem("role", "company");
+      
+      navigate({ to: "/company-dashboard", replace: false });
     } catch (error) {
       setError(true);
     }
@@ -28,7 +38,7 @@ function SignUpJobseekerScreen() {
 
   return (
     <div className="overflow-y-autobg-custom-light h-screen">
-      <header className="top-0 mb-12 flex w-full items-center justify-end gap-8 bg-custom-footer_signin_joobseeker px-16">
+      <header className="bg-custom-light-100 top-0 mb-12 flex w-full items-center justify-end gap-8 px-16">
         <div className=" logo mr-auto">
           <img src={logotextImage} alt="" className=" w-36" />
         </div>
@@ -58,28 +68,28 @@ function SignUpJobseekerScreen() {
               <p className="text-4xl font-bold">Dafter ke SpaceWork</p>
               <p className="text-3xl font-light ">
                 sebagai{" "}
-                <span className="text-3xl font-light italic">jobseeker</span>
+                <span className="text-3xl font-light italic">company</span>
               </p>
             </div>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm font-bold">Nama Lengkap</span>
+              <span className="mb-2 text-sm font-bold">Nama Perusahaan</span>
               <input
                 type="text"
                 required
                 className="w-full rounded bg-custom-bg_box_input py-3 px-4"
-                placeholder="contoh: Ahmad Budi Cahyono"
-                {...register("fullName")}
+                placeholder="contoh: PT Makmur Sejahtera"
+                {...register("name")}
               />
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm font-bold">Email</span>
+              <span className="mb-2 text-sm font-bold">Email Perusahaan</span>
               <input
                 type="email"
                 required
                 className="w-full rounded bg-custom-bg_box_input py-3 px-4"
-                placeholder="contoh: ahmad.budi@email.com"
+                placeholder="contoh: company@makmur.com"
                 {...register("email")}
               />
             </label>
@@ -96,19 +106,22 @@ function SignUpJobseekerScreen() {
               />
             </label>
 
-            <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm font-bold">Tanggal Lahir</span>
+            <label className="flex w-full flex-col ">
+              <span className="mb-2 text-sm font-bold ">
+                Nomor Telepon Perusahaan
+              </span>
               <input
-                type="date"
+                type="tel"
                 required
                 className="w-full rounded bg-custom-bg_box_input py-3 px-4"
-                placeholder="contoh: ahmad.budi@email.com"
-                {...register("birthDate")}
+                {...register("phoneNumber")}
               />
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm font-bold">Alamat Lengkap</span>
+              <span className="mb-2 text-sm font-bold">
+                Alamat Resmi Perusahaan
+              </span>
               <textarea
                 required
                 rows="4"
@@ -141,7 +154,7 @@ function SignUpJobseekerScreen() {
 
             <label className="flex w-full flex-col">
               <span className="mb-2 text-sm font-bold">
-                Deskripsi tentang Diri Sendiri
+                Deskripsi tentang Perusahaan
               </span>
               <textarea
                 required
@@ -152,19 +165,14 @@ function SignUpJobseekerScreen() {
             </label>
 
             <label className="flex w-full flex-col">
-              <span className="mb-2 text-sm font-bold">Jenis Kelamin</span>
-              <select
-                className="w-full rounded bg-custom-bg_box_input py-3 px-4 text-opacity-60"
-                {...register("gender")}
-              >
-                <option value="">Pilih Jenis Kelamin</option>
-                <option value="male" className="text-black">
-                  Pria
-                </option>
-                <option value="female" className="text-black">
-                  Wanita
-                </option>
-              </select>
+              <span className="mb-2 text-sm font-bold">Website Perusahaan</span>
+              <input
+                type="url"
+                required
+                className="w-full rounded bg-custom-bg_box_input py-3 px-4"
+                placeholder="contoh: https://www.google.com"
+                {...register("website")}
+              />
             </label>
 
             <div className="mb8"></div>
@@ -175,7 +183,7 @@ function SignUpJobseekerScreen() {
 
             <span className="">
               Sudah punya akun?
-              <a href="/login">
+              <a href="/login/company">
                 <u className="font-bold">Login</u>
               </a>
             </span>
@@ -185,4 +193,3 @@ function SignUpJobseekerScreen() {
     </div>
   );
 }
-export default SignUpJobseekerScreen;
