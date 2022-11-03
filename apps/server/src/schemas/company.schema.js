@@ -7,14 +7,11 @@ const createCompanySchema = {
       password: Type.String({ minLength: 8 }),
       name: Type.String(),
       description: Type.String(),
-      profilePictureUrl: Type.Optional(Type.String({ format: "uri" })),
       address: Type.String(),
       cityCode: Type.String(),
       countryCode: Type.String(),
-      phoneNumber: Type.String({
-        pattern: "/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$/",
-      }),
-      website: Type.String({ format: "uri" }),
+      phoneNumber: Type.String(),
+      website: Type.String(),
     }),
   },
 };

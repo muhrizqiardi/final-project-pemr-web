@@ -11,7 +11,7 @@ function companies(fastify, options, done) {
   fastify.post("/companies", createCompanySchema, async (request, reply) => {
     try {
       const newCompany = await prisma.company.create({
-        data: { ...request.body, profilePictureUrl: "", resumeUrl: "" },
+        data: { ...request.body, profilePictureUrl: "" },
       });
 
       reply.status(201).send({
@@ -29,12 +29,9 @@ function companies(fastify, options, done) {
   // Get many companies
   fastify.get("/companies", getManyCompanySchema, async (request, reply) => {
     try {
-      const companies = await prisma.company.findMany({
+      let companies = await prisma.company.findMany({
         where: {
           ...request.query,
-        },
-        select: {
-          password: false,
         },
       });
 
@@ -56,11 +53,8 @@ function companies(fastify, options, done) {
     getOneCompanyByIdSchema,
     async (request, reply) => {
       try {
-        const company = await prisma.company.findMany({
+        const company = await prisma.company.findUnique({
           where: { id: request.params.id },
-          select: {
-            password: false,
-          },
         });
 
         reply.status(201).send({

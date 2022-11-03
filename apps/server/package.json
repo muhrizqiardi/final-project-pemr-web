@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "^8.1.1",
     "@fastify/swagger": "^7.6.1",
     "@sinclair/typebox": "^0.24.44",
     "fastify": "^4.6.0",

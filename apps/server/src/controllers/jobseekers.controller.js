@@ -12,15 +12,20 @@ function jobseekers(fastify, options, done) {
   fastify.post("/jobseekers", createJobseekerSchema, async (request, reply) => {
     try {
       const newJobseeker = await prisma.jobseeker.create({
-        data: { ...request.body, profilePictureUrl: "", resumeUrl: "" },
+        data: {
+          ...request.body,
+          birthDate: new Date(request.body.birthDate).toISOString(),
+          profilePictureUrl: "",
+          resumeUrl: "",
+        },
       });
 
-      reply.status(201).send({
+      return reply.status(201).send({
         code: 201,
         data: newJobseeker,
       });
     } catch (error) {
-      reply.status(500).send({
+      return reply.status(500).send({
         code: 500,
         message: `Error: ${error}`,
       });
