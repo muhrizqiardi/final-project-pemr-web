@@ -4,6 +4,7 @@ const {
   getOneCompanyByIdSchema,
   updateCompanySchema,
   createCompanySchema,
+  deleteOneCompanyByIdSchema,
 } = require("../schemas/company.schema");
 
 function companies(fastify, options, done) {
@@ -80,6 +81,9 @@ function companies(fastify, options, done) {
           where: {
             id: request.params.id,
           },
+          data: {
+            ...request.body,
+          }
         });
 
         reply.status(200).send({
@@ -98,7 +102,7 @@ function companies(fastify, options, done) {
   // Delete companies
   fastify.delete(
     "/companies/:id",
-    getOneCompanyByIdSchema,
+    deleteOneCompanyByIdSchema,
     async (request, reply) => {
       try {
         const company = await prisma.company.delete({
