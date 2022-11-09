@@ -11,7 +11,6 @@ const createJobVacancySchema = {
     body: Type.Object({
       title: Type.String(),
       description: Type.String(),
-      companyId: Type.String(),
     }),
   },
 };
@@ -19,15 +18,9 @@ const createJobVacancySchema = {
 const getManyJobVacancySchema = {
   schema: {
     summary: "Get Many Job Vacancy",
-    security: [
-      {
-        Bearer: [],
-      },
-    ],
     querystring: Type.Object({
-      title: Type.String(),
-      description: Type.String(),
-      companyName: Type.String(),
+      title: Type.Optional(Type.String()),
+      description: Type.Optional(Type.String()),
     }),
   },
 };
@@ -35,11 +28,6 @@ const getManyJobVacancySchema = {
 const getOneJobVacancyByIdSchema = {
   schema: {
     summary: "Get a Job Vacancy by ID",
-    security: [
-      {
-        Bearer: [],
-      },
-    ],
     params: Type.Object({
       id: Type.Number(),
     }),
