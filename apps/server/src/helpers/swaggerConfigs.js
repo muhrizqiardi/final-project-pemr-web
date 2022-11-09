@@ -1,11 +1,6 @@
 module.exports = {
   routePrefix: "/docs",
   swagger: {
-    info: {
-      title: "SpaceWork REST API",
-      description: "API documentati on for SpaceWork REST API",
-      version: "1.0",
-    },
     servers: [
       {
         url: "http://localhost:9000",
@@ -14,4 +9,20 @@ module.exports = {
     hideUntagged: false,
   },
   exposeRoute: true,
+  openapi: {
+    info: {
+      title: "SpaceWork REST API",
+      description: "API documentation for SpaceWork REST API",
+      version: "1.0",
+    },
+    components: {
+      securitySchemes: {
+        Bearer: {
+          type: "apiKey",
+          name: "Authorization",
+          in: "header",
+        },
+      },
+    },
+  },
 };
