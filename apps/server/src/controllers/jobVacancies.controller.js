@@ -1,3 +1,4 @@
+const getCompanyUserByToken = require("../helpers/getCompanyUserByToken");
 const prisma = require("../helpers/prisma");
 const {
   createJobVacancySchema,
@@ -13,8 +14,12 @@ function jobVacanciesController(fastify, options, done) {
     createJobVacancySchema,
     async (request, reply) => {
       try {
+        const user = await getCompanyUserByToken(
+          request.headers.authorization.split(" ")[1]
+        );
+
         const newJobVacancy = await prisma.jobVacancy.create({
-          data: request.body,
+          data: { ...request.body, company: { connect: { id: user.id } } },
         });
 
         reply.status(200).send({
@@ -36,7 +41,20 @@ function jobVacanciesController(fastify, options, done) {
     async (request, reply) => {
       try {
         const jobVacancies = await prisma.jobVacancy.findMany({
-          where: request.query,
+          // where: request.query,
+          where: {
+            title: {
+              contains: request.query.title,
+            },
+            description: {
+              contains: request.query.description,
+            },
+            company: {
+              name: {
+                contains: request.query.companyName,
+              },
+            },
+          },
         });
 
         reply.status(200).send({

@@ -2,6 +2,7 @@ const { Type } = require("@sinclair/typebox");
 
 const createCompanySchema = {
   schema: {
+    summary: "Create a Company Account",
     body: Type.Object({
       email: Type.String({ format: "email" }),
       password: Type.String({ minLength: 8 }),
@@ -18,6 +19,12 @@ const createCompanySchema = {
 
 const getOneCompanyByIdSchema = {
   schema: {
+    summary: "Get a Jobseeker Account by ID",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),
@@ -26,16 +33,28 @@ const getOneCompanyByIdSchema = {
 
 const getManyCompanySchema = {
   schema: {
+    summary: "Get Many Jobseeker Account",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     querystring: Type.Object({
-      id: Type.Number(),
-      email: Type.String({ format: "email" }),
-      name: Type.String(),
+      id: Type.Optional(Type.Number()),
+      email: Type.Optional(Type.String({ format: "email" })),
+      name: Type.Optional(Type.String()),
     }),
   },
 };
 
 const updateCompanySchema = {
   schema: {
+    summary: "Update a Jobseeker Account",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),
@@ -60,6 +79,12 @@ const updateCompanySchema = {
 
 const deleteOneCompanyByIdSchema = {
   schema: {
+    summary: "Delete a Jobseeker Account",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),

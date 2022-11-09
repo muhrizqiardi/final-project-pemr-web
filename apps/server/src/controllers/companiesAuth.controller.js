@@ -1,7 +1,10 @@
 const prisma = require("../helpers/prisma");
 const { signInJobseekerSchema } = require("../schemas/jobseekerAuth.schema");
 const jwt = require("jsonwebtoken");
-const { signInCompanySchema } = require("../schemas/companyAuth.schema");
+const {
+  signInCompanySchema,
+  getTokenIsValidSchema,
+} = require("../schemas/companyAuth.schema");
 
 function companiesAuth(fastify, options, done) {
   fastify.post(
@@ -41,26 +44,30 @@ function companiesAuth(fastify, options, done) {
     }
   );
 
-  fastify.get("/companies-auth", async (request, reply) => {
-    try {
-      const token = jwt.decode(request.headers.authorization.split(" ")[1]);
+  fastify.get(
+    "/companies-auth",
+    getTokenIsValidSchema,
+    async (request, reply) => {
+      try {
+        const token = jwt.decode(request.headers.authorization.split(" ")[1]);
 
-      let company = await prisma.company.findUnique({
-        where: {
-          id: token.id,
-        },
-      });
+        let company = await prisma.company.findUnique({
+          where: {
+            id: token.id,
+          },
+        });
 
-      delete company.password;
+        delete company.password;
 
-      return reply.status(200).send({ code: 200, data: company });
-    } catch (error) {
-      return reply.status(500).send({
-        code: 500,
-        message: `Error: ${error}`,
-      });
+        return reply.status(200).send({ code: 200, data: company });
+      } catch (error) {
+        return reply.status(500).send({
+          code: 500,
+          message: `Error: ${error}`,
+        });
+      }
     }
-  });
+  );
 
   done();
 }

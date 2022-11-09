@@ -1,3 +1,4 @@
+const applicationsController = require("./controllers/applications.controller");
 const companies = require("./controllers/companies.controller");
 const companiesAuth = require("./controllers/companiesAuth.controller");
 const jobseekers = require("./controllers/jobseekers.controller");
@@ -10,6 +11,7 @@ function routes(fastify, options, done) {
   fastify.register(companies);
   fastify.register(companiesAuth)
   fastify.register(jobVacanciesController)
+  fastify.register(applicationsController)
 
   return done();
 }
