@@ -1,0 +1,14 @@
+{
+  "name": "final-project-pemr-web",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "client:dev": "pnpm -F client dev",
+    "server:watch": "pnpm -F server exec nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

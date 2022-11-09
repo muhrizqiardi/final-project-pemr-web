@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Jobseeker {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email                  String                @unique
+  password               String
+  fullName               String
+  description            String
+  profilePictureUrl      String
+  resumeUrl              String
+  birthDate              DateTime
+  gender                 String
+  address                String
+  cityCode               String
+  countryCode            String
+  educations             JobseekerEducation[]
+  experiences            JobseekerExperience[]
+  skills                 JobseekerSkill[]
+  jobVacancyApplications Application[]
+}
+
+model JobseekerEducation {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  schoolName  String
+  start       DateTime
+  finish      DateTime
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
+}
+
+model JobseekerExperience {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  companyName String
+  start       DateTime
+  finish      DateTime
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
+}
+
+model JobseekerSkill {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  skillName   String
+  jobseekerId Int?
+  jobseeker   Jobseeker? @relation(fields: [jobseekerId], references: [id])
+}
+
+model JobVacancy {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title        String
+  description  String
+  companyId    Int
+  company      Company       @relation(fields: [companyId], references: [id])
+  applications Application[]
+}
+
+model Application {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobVacancyId Int?
+  jobVacancy   JobVacancy? @relation(fields: [jobVacancyId], references: [id])
+  jobseeker    Jobseeker?  @relation(fields: [jobseekerId], references: [id])
+  jobseekerId  Int?
+
+  status ApplicationStatus
+
+  @@unique([jobVacancyId, jobseekerId])
+}
+
+model Company {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email             String       @unique
+  password          String
+  name              String
+  description       String
+  profilePictureUrl String
+  address           String
+  cityCode          String
+  countryCode       String
+  phoneNumber       String
+  website           String
+  jobVacancies      JobVacancy[]
+}
+
+enum ApplicationStatus {
+  NOT_YET_RESPONDED
+  ACCEPTED
+  REJECTED
+}
