@@ -7,7 +7,7 @@ import logoImage from "../assets/logo.png";
 import logotextImage from "../assets/logotext.png";
 import batikImage from "../assets/batik-signup-jobseeker.png";
 
-function LoginScreen() {
+function LoginCompanyScreen() {
   const [isLoading, setIsLoading] = useState(false);
   const { isError, setError, errorMessage } = useError();
   const { register, handleSubmit } = useForm();
@@ -62,7 +62,7 @@ function LoginScreen() {
                 <div className="text-center text-custom-text_red">
                   <p className="text-4xl font-bold">Dafter ke SpaceWork</p>
                   <p className="text-3xl font-light">
-                    sebagai <span className="italic">jobseeker</span>
+                    sebagai <span className="italic">company</span>
                   </p>
                 </div>
 
@@ -113,4 +113,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default LoginCompanyScreen;
