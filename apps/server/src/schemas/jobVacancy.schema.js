@@ -2,6 +2,12 @@ const { Type } = require("@sinclair/typebox");
 
 const createJobVacancySchema = {
   schema: {
+    summary: "Create a Job Vacancy",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     body: Type.Object({
       title: Type.String(),
       description: Type.String(),
@@ -12,6 +18,12 @@ const createJobVacancySchema = {
 
 const getManyJobVacancySchema = {
   schema: {
+    summary: "Get Many Job Vacancy",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     querystring: Type.Object({
       title: Type.String(),
       description: Type.String(),
@@ -22,6 +34,12 @@ const getManyJobVacancySchema = {
 
 const getOneJobVacancyByIdSchema = {
   schema: {
+    summary: "Get a Job Vacancy by ID",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),
@@ -30,6 +48,12 @@ const getOneJobVacancyByIdSchema = {
 
 const updateOneJobVacancyByIdSchema = {
   schema: {
+    summary: "Update a Job Vacancy",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),
@@ -43,6 +67,12 @@ const updateOneJobVacancyByIdSchema = {
 
 const deleteOneJobVacancyByIdSchema = {
   schema: {
+    summary: "Delete a Job Vacancy",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
     params: Type.Object({
       id: Type.Number(),
     }),
