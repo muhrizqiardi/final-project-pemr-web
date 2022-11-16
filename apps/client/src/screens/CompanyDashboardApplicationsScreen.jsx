@@ -94,7 +94,7 @@ export default function CompanyDashboardApplicationsScreen() {
                   <span> 1h ago</span>
                 </p>
               </div>
-              <a href="/jobs/1">
+              <a href="/detail-applications">
                 <article className="rounded-xl border-2 p-9 hover:bg-gray-50">
                   <p className="text-xl font-bold">Quality Assurance </p>
                   <p className="mb-2">Qasir</p>
