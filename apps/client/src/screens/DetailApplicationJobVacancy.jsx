@@ -53,7 +53,9 @@ function DetailApplication() {
       </section>
 
       <div className="flow">
-        
+        <div>
+          
+        </div>
       </div>
     </>
   );
