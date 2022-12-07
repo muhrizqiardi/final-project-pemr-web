@@ -28,7 +28,7 @@ function SignUpJobseekerScreen() {
 
   return (
     <div className="overflow-y-autobg-custom-light h-screen">
-      <header className="bg-custom-light-100 top-0 mb-12 flex w-full items-center justify-end gap-8 px-16">
+      <header className="top-0 mb-12 flex w-full items-center justify-end gap-8 bg-custom-footer_signin_joobseeker px-16">
         <div className=" logo mr-auto">
           <img src={logotextImage} alt="" className=" w-36" />
         </div>
