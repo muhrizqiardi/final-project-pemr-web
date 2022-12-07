@@ -63,6 +63,13 @@ export default function SignUpCompanyScreen() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center gap-4  "
           >
+            <div className="p-6">
+              <article className="rounded-2xl bg-[rgb(51,15,10)] p-4 text-center text-white hover:underline">
+                <a href="/sign-up/jobseekers">
+                  Ingin membuat akun perusahaan? Kunjungi laman ini.
+                </a>
+              </article>
+            </div>
             <img src={logoImage} alt="" className="h-16 w-16" />
             <div className="text-center text-custom-text_red">
               <p className="text-4xl font-bold">Dafter ke SpaceWork</p>

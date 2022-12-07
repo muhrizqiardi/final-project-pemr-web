@@ -19,9 +19,9 @@ function Routes() {
       routes={[
         { path: "/", element: <LandingScreen /> },
         { path: "/login/jobseekers", element: <LoginScreen /> },
-        { path: "/login/company", element: <LoginCompanyScreen /> },
+        { path: "/login/companies", element: <LoginCompanyScreen /> },
         { path: "/sign-up/jobseekers", element: <SignUpJobseekerScreen /> },
-        { path: "/sign-up/company", element: <SignUpCompanyScreen /> },
+        { path: "/sign-up/companies", element: <SignUpCompanyScreen /> },
         { path: "/jobs/:id", element: <JobVacancyDetailScreen /> },
         {
           path: "/company-dashboard/edit-profile",
