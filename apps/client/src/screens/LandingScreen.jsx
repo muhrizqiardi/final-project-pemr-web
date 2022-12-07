@@ -19,10 +19,10 @@ function LandingScreen() {
             <a href="#">Tentang Kami</a>
           </li>
           <li className="ml-auto">
-            <a href="/sign-up">Daftar</a>
+            <a href="/sign-up/jobseekers">Daftar</a>
           </li>
           <li>
-            <a href="/login">Masuk</a>
+            <a href="/login/jobseekers">Masuk</a>
           </li>
         </ul>
       </header>
