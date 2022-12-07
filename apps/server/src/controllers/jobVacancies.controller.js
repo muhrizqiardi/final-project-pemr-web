@@ -41,10 +41,10 @@ function jobVacanciesController(fastify, options, done) {
     async (request, reply) => {
       try {
         const jobVacancies = await prisma.jobVacancy.findMany({
-          // where: request.query,
           where: {
             title: {
               contains: request.query.title,
+              mode: "insensitive",
             },
             description: {
               contains: request.query.description,
@@ -54,6 +54,19 @@ function jobVacanciesController(fastify, options, done) {
                 contains: request.query.companyName,
               },
             },
+          },
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            company: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
           },
         });
 

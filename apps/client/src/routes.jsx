@@ -7,6 +7,7 @@ import JobVacancyDetailScreen from "./screens/JobVacancyDetailScreen";
 import LandingScreen from "./screens/LandingScreen";
 import LoginCompanyScreen from "./screens/LoginCompanyScreen";
 import LoginScreen from "./screens/LoginScreen";
+import SearchScreen from "./screens/SearchScreen";
 import SignUpCompanyScreen from "./screens/SignUpCompanyScreen";
 import SignUpJobseekerScreen from "./screens/SignUpJobseekerScreen";
 
@@ -22,6 +23,7 @@ function Routes() {
         { path: "/login/companies", element: <LoginCompanyScreen /> },
         { path: "/sign-up/jobseekers", element: <SignUpJobseekerScreen /> },
         { path: "/sign-up/companies", element: <SignUpCompanyScreen /> },
+        { path: "/jobs", element: <SearchScreen /> },
         { path: "/jobs/:id", element: <JobVacancyDetailScreen /> },
         {
           path: "/company-dashboard/edit-profile",
