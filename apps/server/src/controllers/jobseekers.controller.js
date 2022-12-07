@@ -35,18 +35,30 @@ function jobseekers(fastify, options, done) {
   // Get many jobseeker
   fastify.get("/jobseekers", getManyJobseekerSchema, async (request, reply) => {
     try {
-      const jobseeker = await prisma.jobseeker.findMany({
+      const jobseekers = await prisma.jobseeker.findMany({
         where: {
           ...request.query,
         },
-        select: {
-          password: false,
-        },
       });
+
+      const jobseekersWithoutPassword = jobseekers.map((jobseeker) => ({
+        id: jobseeker.id,
+        fullName: jobseeker.fullName,
+        email: jobseeker.email,
+        birthDate: jobseeker.birthDate,
+        profilePictureUrl: jobseeker.profilePictureUrl,
+        resumeUrl: jobseeker.resumeUrl,
+        createdAt: jobseeker.createdAt,
+        updatedAt: jobseeker.updatedAt,
+        gender: jobseeker.gender,
+        address: jobseeker.address,
+        cityCode: jobseeker.cityCode,
+        countryCode: jobseeker.countryCode,
+      }));
 
       reply.status(201).send({
         code: 201,
-        data: jobseeker,
+        data: jobseekersWithoutPassword,
       });
     } catch (error) {
       reply.status(500).send({
