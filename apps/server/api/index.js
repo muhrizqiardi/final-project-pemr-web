@@ -1,6 +1,6 @@
 "use strict";
 
-const server = require("./server")
+const server = require("../src/server")
 require("dotenv").config();
 const Fastify = require("fastify");
 
