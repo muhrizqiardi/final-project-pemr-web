@@ -96,6 +96,24 @@ function applicationsController(fastify, options, done) {
       try {
         const applications = await prisma.application.findMany({
           where,
+          select: {
+            id: true,
+            status: true,
+            jobVacancy: {
+              select: {
+                id: true,
+                title: true,
+                company: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
+          },
         });
 
         reply.status(200).send({
