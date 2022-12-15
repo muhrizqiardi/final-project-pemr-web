@@ -3,10 +3,11 @@ import logotextImage from "../assets/logotext.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 
-const User = ({ jobseeker, company, loading, isAuthenticated }) => {
-  if (loading) return <></>;
+const User = () => {
+  const { isAuthenticated, isLoading, company, jobseeker, logout } =
+    useContext(AuthContext);
 
-  if (!isAuthenticated)
+  if (isLoading || !isAuthenticated)
     return (
       <>
         <li className="ml-auto">
@@ -28,7 +29,10 @@ const User = ({ jobseeker, company, loading, isAuthenticated }) => {
           <p className="text-xs text-gray-700">Company</p>
         </article>
         <button>
-          <ArrowRightOnRectangleIcon className="h-16 w-6" />
+          <ArrowRightOnRectangleIcon
+            onClick={() => logout()}
+            className="h-16 w-6"
+          />
         </button>
       </div>
     );
@@ -43,7 +47,10 @@ const User = ({ jobseeker, company, loading, isAuthenticated }) => {
           <p className="text-xs text-gray-700">Jobseeker</p>
         </article>
         <button>
-          <ArrowRightOnRectangleIcon className="h-16 w-6" />
+          <ArrowRightOnRectangleIcon
+            onClick={() => logout()}
+            className="h-16 w-6"
+          />
         </button>
       </div>
     );
@@ -61,9 +68,6 @@ const User = ({ jobseeker, company, loading, isAuthenticated }) => {
 };
 
 function Header() {
-  const { isAuthenticated, isLoading, company, jobseeker } =
-    useContext(AuthContext);
-
   return (
     <header className="bg-custom-light-100 top-0 flex h-36 w-full items-center gap-8 px-16">
       <a href="/" className="logo">
@@ -73,12 +77,7 @@ function Header() {
         <li className="mr-auto">
           <a href="/search-jobs">Cari lowongan</a>
         </li>
-        <User
-          jobseeker={jobseeker}
-          company={company}
-          isAuthenticated={isAuthenticated}
-          isLoading={isLoading}
-        />
+        <User />
       </ul>
     </header>
   );
