@@ -1,31 +1,11 @@
 import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import logotextImage from "../assets/logotext.png";
+import Header from "../components/Header";
 
 function LandingScreen() {
   return (
     <div className="bg-custom-light">
-      <header className="bg-custom-light-100 top-0 flex h-36 w-full items-center gap-8 px-16">
-        <div className="logo">
-          <img src={logotextImage} alt="" className="h-36" />
-        </div>
-        <ul className="flex flex-grow gap-8">
-          <li>
-            <a href="#">Cari Lowongan</a>
-          </li>
-          <li>
-            <a href="#">Blog</a>
-          </li>
-          <li className="mr-auto">
-            <a href="#">Tentang Kami</a>
-          </li>
-          <li className="ml-auto">
-            <a href="/sign-up/jobseekers">Daftar</a>
-          </li>
-          <li>
-            <a href="/login/jobseekers">Masuk</a>
-          </li>
-        </ul>
-      </header>
+      <Header />
       <main className="home bg-custom-light-100 w-full">
         <div className="ml-20 mb-8 flex font-bold">
           <h1 className="text-5xl">

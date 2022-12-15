@@ -21,6 +21,7 @@ const getManyJobVacancySchema = {
     querystring: Type.Object({
       title: Type.Optional(Type.String()),
       description: Type.Optional(Type.String()),
+      companyId: Type.Optional(Type.Number()),
     }),
   },
 };

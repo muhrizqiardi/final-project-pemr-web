@@ -24,6 +24,8 @@ const AuthProvider = ({ children }) => {
       const jobseekerToken = localStorage.getItem("jobseekerToken");
       const companyToken = localStorage.getItem("companyToken");
 
+      console.log(companyToken);
+
       if (!jobseekerToken && !companyToken) throw new Error();
 
       if (jobseekerToken) {
@@ -49,6 +51,8 @@ const AuthProvider = ({ children }) => {
             Authorization: `Bearer ${JSON.parse(companyToken)}`,
           },
         });
+
+        console.log("company", result.data.data);
 
         if (!result) throw new Error();
 
@@ -92,7 +96,7 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      const { token, company } = res.data;
+      const token = res.data.data;
       localStorage.setItem("companyToken", JSON.stringify(token));
       checkToken();
     } catch (err) {

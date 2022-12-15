@@ -53,6 +53,7 @@ function jobVacanciesController(fastify, options, done) {
               name: {
                 contains: request.query.companyName,
               },
+              id: request.query.companyId
             },
           },
           select: {

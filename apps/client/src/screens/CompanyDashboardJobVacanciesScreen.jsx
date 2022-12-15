@@ -12,7 +12,7 @@ export default function CompanyDashboardJobVacanciesScreen() {
 
   const fetchJobVacancies = async () => {
     try {
-      const result = await axios.get(`${env.API_URL}/applications`, {
+      const result = await axios.get(`${env.API_URL}/job-vacancies`, {
         params: {
           companyId: company.id,
         },
@@ -49,18 +49,18 @@ export default function CompanyDashboardJobVacanciesScreen() {
         <section className="border-r border-r-gray-400 p-6">
           <ul className="flex flex-col gap-4 text-end">
             <li className="rounded-md px-3 py-2 hover:bg-gray-100">
-              <Link to="edit-profile">Edit profil perusahaan</Link>
+              <Link to="../edit-profile">Edit profil perusahaan</Link>
             </li>
             <li className="rounded-md px-3 py-2 font-bold">
               Daftar lowongan yang telah dibuat
             </li>
             <li className="rounded-md px-3 py-2 hover:bg-gray-100">
-              <Link to="create-job-vacancies">
+              <Link to="../create-job-vacancy">
                 Membuat lowongan pekerjaan baru
               </Link>
             </li>
             <li className="rounded-md px-3 py-2 hover:bg-gray-100">
-              <Link to="applications">Lamaran yang diterima</Link>
+              <Link to="../applications">Lamaran yang diterima</Link>
             </li>
           </ul>
         </section>
@@ -74,9 +74,8 @@ export default function CompanyDashboardJobVacanciesScreen() {
             {jobVacancies?.map((jobVacancy, index) => (
               <a key={index} href="/jobs/1">
                 <article className="rounded-xl border-2 p-9 hover:bg-gray-50">
-                  <p className="text-xl font-bold">Quality Assurance </p>
-                  <p className="mb-2">Qasir</p>
-                  <p className="text-gray-700">Pengalaman min. 1 tahun</p>
+                  <p className="text-xl font-bold">{jobVacancy.title}</p>
+                  <p className="mb-2">{jobVacancy.company.name}</p>
                 </article>
               </a>
             ))}

@@ -6,22 +6,21 @@ import axiosInstance from "../helpers/axiosInstance";
 import logoImage from "../assets/logo.png";
 import logotextImage from "../assets/logotext.png";
 import batikImage from "../assets/batik-signup-jobseeker.png";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 function LoginScreen() {
+  const { jobseekerLogin } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const { isError, setError, errorMessage } = useError();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log({data})
     try {
-      const result = await axiosInstance.post("/jobseekers-auth", {
-        ...data,
-      });
+      setIsLoading(true);
 
-      localStorage.setItem("token", result.data.data.toString());
-      localStorage.setItem("role", "jobseeker");
+      const result = await jobseekerLogin(data.email, data.password);
 
       navigate({ to: "/", replace: false });
     } catch (error) {

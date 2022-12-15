@@ -100,6 +100,7 @@ function applicationsController(fastify, options, done) {
           select: {
             id: true,
             status: true,
+            coverLetter: true,
             jobVacancy: {
               select: {
                 id: true,

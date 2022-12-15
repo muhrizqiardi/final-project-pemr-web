@@ -11,7 +11,7 @@ function jobseekersAuth(fastify, options, done) {
     signInJobseekerSchema,
     async (request, reply) => {
       try {
-        const jobseeker = await prisma.jobseeker.findFirst({
+        const jobseeker = await prisma.jobseeker.findUniqueOrThrow({
           where: {
             email: request.body.email,
           },
