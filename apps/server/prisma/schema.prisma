@@ -86,6 +86,8 @@ model Application {
   jobseeker    Jobseeker?  @relation(fields: [jobseekerId], references: [id])
   jobseekerId  Int?
 
+  coverLetter String @default("")
+
   status ApplicationStatus
 
   @@unique([jobVacancyId, jobseekerId])
