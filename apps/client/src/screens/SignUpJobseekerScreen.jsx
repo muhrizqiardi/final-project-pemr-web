@@ -28,7 +28,7 @@ function SignUpJobseekerScreen() {
 
   return (
     <div className="overflow-y-autobg-custom-light h-screen">
-      <header className="bg-custom-light-100 top-0 mb-12 flex w-full items-center justify-end gap-8 px-16">
+      <header className="top-0 flex w-full items-center justify-end gap-8 bg-custom-footer_signin_joobseeker px-16">
         <div className=" logo mr-auto">
           <img src={logotextImage} alt="" className=" w-36" />
         </div>
@@ -49,6 +49,13 @@ function SignUpJobseekerScreen() {
           <img src={batikImage} alt="" />
         </div>
         <div className="bg-[#F4FDAF] p-16">
+          <div className="p-6">
+            <article className="rounded-2xl bg-[rgb(51,15,10)] p-4 text-center text-white hover:underline">
+              <a href="/sign-up/companies">
+                Ingin membuat akun perusahaan? Kunjungi laman ini.
+              </a>
+            </article>
+          </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center gap-4  "

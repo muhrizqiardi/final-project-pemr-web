@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "@tanstack/react-location";
 import useError from "../helpers/useError";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axiosInstance from "../helpers/axiosInstance";
 import logoImage from "../assets/logo.png";
 import logotextImage from "../assets/logotext.png";
@@ -14,22 +14,15 @@ export default function SignUpCompanyScreen() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log({ data });
     try {
+      const { companyLogin } = useContext(AuthContext);
+
       await axiosInstance.post("/companies", {
         ...data,
       });
 
-      const loginResult = await axiosInstance.post("/companies-auth", {
-        email: data.email,
-        password: data.password,
-      });
+      await companyLogin(data.email, data.password);
 
-      if (!loginResult) throw new Error("");
-      
-      localStorage.setItem("token", JSON.stringify(loginResult.data.data));
-      localStorage.setItem("role", "company");
-      
       navigate({ to: "/company-dashboard", replace: false });
     } catch (error) {
       setError(true);
@@ -63,6 +56,13 @@ export default function SignUpCompanyScreen() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center gap-4  "
           >
+            <div className="p-6">
+              <article className="rounded-2xl bg-[rgb(51,15,10)] p-4 text-center text-white hover:underline">
+                <a href="/sign-up/jobseekers">
+                  Ingin membuat akun perusahaan? Kunjungi laman ini.
+                </a>
+              </article>
+            </div>
             <img src={logoImage} alt="" className="h-16 w-16" />
             <div className="text-center text-custom-text_red">
               <p className="text-4xl font-bold">Dafter ke SpaceWork</p>

@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         custom: {
           footer: "#000000",
+          footer_signin_joobseeker: "#E7D38F",
           primary: "#FFF73E",
           secondary: "#C16060",
           button: "#12355B",

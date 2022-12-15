@@ -20,6 +20,7 @@ function applicationsController(fastify, options, done) {
 
         const newApplication = await prisma.application.create({
           data: {
+            coverLetter: request.body.coverLetter,
             jobVacancy: {
               connect: {
                 id: request.body.jobVacancyId,
@@ -96,6 +97,32 @@ function applicationsController(fastify, options, done) {
       try {
         const applications = await prisma.application.findMany({
           where,
+          select: {
+            id: true,
+            status: true,
+            coverLetter: true,
+            jobVacancy: {
+              select: {
+                id: true,
+                title: true,
+                company: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+            jobseeker: {
+              select: {
+                id: true,
+                fullName: true,
+                description: true,
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
+          },
         });
 
         reply.status(200).send({

@@ -10,6 +10,22 @@ const signInJobseekerSchema = {
   },
 };
 
+const getTokenIsValidSchema = {
+  schema: {
+    summary:
+      "Check whether the token is valid or not, also returns jobseeker data",
+    security: [
+      {
+        Bearer: [],
+      },
+    ],
+    headers: Type.Object({
+      Authorization: Type.String(),
+    }),
+  },
+};
+
 module.exports = {
   signInJobseekerSchema,
+  getTokenIsValidSchema,
 };
