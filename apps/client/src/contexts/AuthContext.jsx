@@ -15,7 +15,6 @@ const AuthContext = createContext(initialState);
 
 const AuthProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
-
   useEffect(() => {
     checkToken();
   }, []);
@@ -104,7 +103,11 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("jobseekerToken");
     localStorage.removeItem("companyToken");
-    setState(initialState);
+    setState((prev) => ({
+      ...initialState,
+      isLoading: false,
+    }));
+    window.location.pathname = "/";
   };
 
   return (
