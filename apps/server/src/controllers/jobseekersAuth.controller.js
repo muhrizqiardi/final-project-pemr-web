@@ -1,5 +1,8 @@
 const prisma = require("../helpers/prisma");
-const { signInJobseekerSchema } = require("../schemas/jobseekerAuth.schema");
+const {
+  signInJobseekerSchema,
+  getTokenIsValidSchema,
+} = require("../schemas/jobseekerAuth.schema");
 const jwt = require("jsonwebtoken");
 
 function jobseekersAuth(fastify, options, done) {
@@ -32,6 +35,31 @@ function jobseekersAuth(fastify, options, done) {
           code: 201,
           data: newToken,
         });
+      } catch (error) {
+        return reply.status(500).send({
+          code: 500,
+          message: `Error: ${error}`,
+        });
+      }
+    }
+  );
+
+  fastify.get(
+    "/jobseekers-auth",
+    getTokenIsValidSchema,
+    async (request, reply) => {
+      try {
+        const token = jwt.decode(request.headers.authorization.split(" ")[1]);
+
+        let jobseeker = await prisma.jobseeker.findUnique({
+          where: {
+            id: token.id_jobseeker,
+          },
+        });
+
+        delete jobseeker.password;
+
+        return reply.status(200).send({ code: 200, data: jobseeker });
       } catch (error) {
         return reply.status(500).send({
           code: 500,
