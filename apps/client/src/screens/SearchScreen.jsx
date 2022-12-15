@@ -1,6 +1,6 @@
-import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import logotextImage from "../assets/logotext.png";
+import Header from "../components/Header";
 import JobVacancyCard from "../components/JobVacancyCard";
 import Spinner from "../components/Spinner";
 import axiosInstance from "../helpers/axiosInstance";
@@ -33,28 +33,7 @@ function SearchScreen() {
 
   return (
     <div className="bg-white">
-      <header className="bg-custom-light-100 top-0 flex h-36 w-full items-center gap-8 px-16">
-        <div className="logo">
-          <img src={logotextImage} alt="" className="h-36" />
-        </div>
-        <ul className="flex flex-grow gap-8">
-          <li>
-            <a href="#">Cari Lowongan</a>
-          </li>
-          <li>
-            <a href="#">Blog</a>
-          </li>
-          <li className="mr-auto">
-            <a href="#">Tentang Kami</a>
-          </li>
-          <li className="ml-auto">
-            <a href="/sign-up/jobseekers">Daftar</a>
-          </li>
-          <li>
-            <a href="/login/jobseekers">Masuk</a>
-          </li>
-        </ul>
-      </header>
+      <Header />
       <main className="home bg-custom-light-100 w-full">
         <form className="flex gap-8 bg-custom-secondary px-16 py-8">
           <div className="box-1 flex gap-2 rounded-3xl bg-white px-4 py-2">
