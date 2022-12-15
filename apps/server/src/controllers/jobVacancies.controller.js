@@ -88,9 +88,22 @@ function jobVacanciesController(fastify, options, done) {
     getOneJobVacancyByIdSchema,
     async (request, reply) => {
       try {
-        const jobVacancy = await prisma.jobVacancy.findUnique({
+        const jobVacancy = await prisma.jobVacancy.findUniqueOrThrow({
           where: {
             id: Number(request.params.id),
+          },
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            company: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
           },
         });
 
