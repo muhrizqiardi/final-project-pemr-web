@@ -20,6 +20,7 @@ function applicationsController(fastify, options, done) {
 
         const newApplication = await prisma.application.create({
           data: {
+            coverLetter: request.body.coverLetter,
             jobVacancy: {
               connect: {
                 id: request.body.jobVacancyId,
@@ -109,6 +110,13 @@ function applicationsController(fastify, options, done) {
                     name: true,
                   },
                 },
+              },
+            },
+            jobseeker: {
+              select: {
+                id: true,
+                fullName: true,
+                description: true,
               },
             },
             createdAt: true,
