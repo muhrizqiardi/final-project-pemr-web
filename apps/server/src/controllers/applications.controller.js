@@ -54,7 +54,7 @@ function applicationsController(fastify, options, done) {
 
       if (request.query.jobseekerId && request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.tatus,
           OR: [
             {
               jobseeker: {
@@ -70,7 +70,7 @@ function applicationsController(fastify, options, done) {
         };
       } else if (request.query.jobseekerId && !request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.us,
           OR: [
             {
               jobseeker: {
@@ -81,7 +81,7 @@ function applicationsController(fastify, options, done) {
         };
       } else if (!request.query.jobseekerId && request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.us,
           OR: [
             {
               jobVacancy: {
