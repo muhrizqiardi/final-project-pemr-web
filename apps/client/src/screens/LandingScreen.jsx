@@ -12,19 +12,18 @@ function LandingScreen() {
             Temukan Pekerjaan <br /> Freelance Impianmu
           </h1>
         </div>
-        <div className="flex gap-8 bg-custom-secondary px-16 py-8">
+        <form
+          action="/search-jobs"
+          className="flex gap-8 bg-custom-secondary px-16 py-8"
+        >
           <div className="box-1 flex gap-2 rounded-3xl bg-white px-4 py-2">
             <MagnifyingGlassIcon className="h-6 " />
-            <input type="text" placeholder="Cari lowongan" />
-          </div>
-          <div className="flex gap-2 rounded-3xl bg-white px-4 py-2">
-            <MapPinIcon className="h-6" />
-            <input type="text" placeholder="Kota" />
+            <input type="text" placeholder="Cari lowongan" name="q" />
           </div>
           <button className="flex rounded-3xl bg-custom-primary px-4 py-2 font-bold">
             Cari
           </button>
-        </div>
+        </form>
         <div className="box-2 my-20 ml-28">
           <h2>DAFTAR SEKARANG, GRATIS!</h2>
           <button className="mt-7 rounded-xl bg-custom-button p-2 font-bold text-white">

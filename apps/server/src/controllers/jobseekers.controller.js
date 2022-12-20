@@ -100,8 +100,13 @@ function jobseekers(fastify, options, done) {
     updateJobseekerSchema,
     async (request, reply) => {
       try {
-        const updatedJobseeker = await prisma.jobseeker.create({
-          data: request.body,
+        const updatedJobseeker = await prisma.jobseeker.update({
+          where: {
+            id: request.params.id,
+          },
+          data: {
+            ...request.body,
+          },
         });
 
         reply.status(201).send({
