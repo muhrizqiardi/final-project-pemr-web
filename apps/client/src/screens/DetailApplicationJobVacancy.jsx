@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-
 function DetailApplication() {
   return (
     <>
@@ -13,7 +12,7 @@ function DetailApplication() {
               <img
                 src="https://thispersondoesnotexist.com/image"
                 className="h-6 w-6 rounded-full"
-              />
+                />
               <p>
                 <span>by </span>
                 <span className="font-semibold">Fulan binti Mulan</span>
@@ -29,12 +28,13 @@ function DetailApplication() {
             </a>
           </article>
 
+        
           <article>
             <div className="mb-2 flex items-center gap-3">
               <img
                 src="https://thispersondoesnotexist.com/image"
                 className="h-6 w-6 rounded-full"
-              />
+                />
               <p>
                 <span>by </span>
                 <span className="font-semibold">Fulan binti Mulan</span>
@@ -52,11 +52,9 @@ function DetailApplication() {
         </div>
       </section>
 
-      <div className="flow">
-        <div>
-          
-        </div>
-      </div>
+      div
     </>
   );
 }
+
+export default DetailApplication ;

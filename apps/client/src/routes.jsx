@@ -3,6 +3,7 @@ import CompanyDashboardApplicationsScreen from "./screens/CompanyDashboardApplic
 import CompanyDashboardCreateJobVacancyScreen from "./screens/CompanyDashboardCreateJobVacancyScreen";
 import CompanyDashboardEditProfileScreen from "./screens/CompanyDashboardEditProfileScreen";
 import CompanyDashboardJobVacanciesScreen from "./screens/CompanyDashboardJobVacanciesScreen";
+import DetailApplication from "./screens/DetailApplicationJobVacancy";
 import JobVacancyDetailScreen from "./screens/JobVacancyDetailScreen";
 import LandingScreen from "./screens/LandingScreen";
 import LoginCompanyScreen from "./screens/LoginCompanyScreen";
@@ -39,6 +40,10 @@ function Routes() {
           path: "/company-dashboard/applications",
           element: <CompanyDashboardApplicationsScreen />,
         },
+        {
+          path: "/detail-application-job",
+          element: <DetailApplication />,
+        }
       ]}
     />
   );

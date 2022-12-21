@@ -89,8 +89,7 @@ export default function CompanyDashboardEditProfileScreen() {
               <textarea
                 name=""
                 id=""
-                cols="30"
-                rows="10"
+                rows={10}
                 className="bg-custom-bg_box_input text-lg"
               ></textarea>
             </div>
