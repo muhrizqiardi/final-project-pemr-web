@@ -1,31 +1,25 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "@tanstack/react-location";
 import useError from "../helpers/useError";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axiosInstance from "../helpers/axiosInstance";
 import logoImage from "../assets/logo.png";
 import logotextImage from "../assets/logotext.png";
 import batikImage from "../assets/batik-signup-jobseeker.png";
+import { AuthContext } from "../contexts/AuthContext";
 
 function LoginCompanyScreen() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { isError, setError, errorMessage } = useError();
+  const { companyLogin } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log({data})
     try {
-      const result = await axiosInstance.post("/jobseekers-auth", {
-        ...data,
-      });
-
-      localStorage.setItem("token", result.data.data.toString());
-      localStorage.setItem("role", "jobseeker");
+      await companyLogin(data.email, data.password);
 
       navigate({ to: "/", replace: false });
     } catch (error) {
-      setError(true);
+      console.error(error);
     }
   };
 
@@ -58,6 +52,13 @@ function LoginCompanyScreen() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col items-center justify-center gap-4  "
               >
+                <div className="p-6">
+                  <article className="rounded-2xl bg-[rgb(51,15,10)] p-4 text-center text-white hover:underline">
+                    <a href="/sign-up/jobseekers">
+                      Ingin masuk ke akun jobseeker? Kunjungi laman ini.
+                    </a>
+                  </article>
+                </div>
                 <img src={logoImage} alt="" className="h-16 w-16" />
                 <div className="text-center text-custom-text_red">
                   <p className="text-4xl font-bold">Dafter ke SpaceWork</p>

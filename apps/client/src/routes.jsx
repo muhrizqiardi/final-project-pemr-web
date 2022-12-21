@@ -1,13 +1,14 @@
 import { Router, ReactLocation, Navigate } from "@tanstack/react-location";
+import axiosInstance from "./helpers/axiosInstance";
 import CompanyDashboardApplicationsScreen from "./screens/CompanyDashboardApplicationsScreen";
 import CompanyDashboardCreateJobVacancyScreen from "./screens/CompanyDashboardCreateJobVacancyScreen";
 import CompanyDashboardEditProfileScreen from "./screens/CompanyDashboardEditProfileScreen";
 import CompanyDashboardJobVacanciesScreen from "./screens/CompanyDashboardJobVacanciesScreen";
-import DetailApplication from "./screens/DetailApplicationJobVacancy";
 import JobVacancyDetailScreen from "./screens/JobVacancyDetailScreen";
 import LandingScreen from "./screens/LandingScreen";
 import LoginCompanyScreen from "./screens/LoginCompanyScreen";
 import LoginScreen from "./screens/LoginScreen";
+import SearchScreen from "./screens/SearchScreen";
 import SignUpCompanyScreen from "./screens/SignUpCompanyScreen";
 import SignUpJobseekerScreen from "./screens/SignUpJobseekerScreen";
 
@@ -19,31 +20,95 @@ function Routes() {
       location={location}
       routes={[
         { path: "/", element: <LandingScreen /> },
-        { path: "/login/jobseekers", element: <LoginScreen /> },
-        { path: "/login/company", element: <LoginCompanyScreen /> },
-        { path: "/sign-up/jobseekers", element: <SignUpJobseekerScreen /> },
-        { path: "/sign-up/company", element: <SignUpCompanyScreen /> },
-        { path: "/jobs/:id", element: <JobVacancyDetailScreen /> },
         {
-          path: "/company-dashboard/edit-profile",
-          element: <CompanyDashboardEditProfileScreen />,
+          path: "login",
+          children: [
+            {
+              path: "jobseekers",
+              element: <LoginScreen />,
+            },
+            {
+              path: "companies",
+              element: <LoginCompanyScreen />,
+            },
+          ],
         },
         {
-          path: "/company-dashboard/job-vacancies",
-          element: <CompanyDashboardJobVacanciesScreen />,
+          path: "sign-up",
+          children: [
+            {
+              path: "jobseekers",
+              element: <SignUpJobseekerScreen />,
+            },
+            {
+              path: "companies",
+              element: <SignUpCompanyScreen />,
+            },
+          ],
+        },
+        { path: "search-jobs", element: <SearchScreen /> },
+        {
+          path: "jobs/:id",
+          children: [
+            {
+              path: "/",
+              element: <JobVacancyDetailScreen />,
+              loader: async ({ params: { id } }) => ({
+                jobVacancyDetail: (
+                  await axiosInstance.get(`/job-vacancies/${id}`)
+                ).data.data,
+              }),
+            },
+            {
+              path: "/apply",
+              element: <JobVacancyApplyScreen />,
+              loader: async ({ params: { id } }) => ({
+                jobVacancyDetail: (
+                  await axiosInstance.get(`/job-vacancies/${id}`)
+                ).data.data,
+              }),
+            },
+          ],
+        },
+
+        {
+          path: "company-dashboard",
+          children: [
+            {
+              path: "edit-profile",
+              element: <CompanyDashboardEditProfileScreen />,
+            },
+            {
+              path: "job-vacancies",
+              element: <CompanyDashboardJobVacanciesScreen />,
+            },
+            {
+              path: "create-job-vacancy",
+              element: <CompanyDashboardCreateJobVacancyScreen />,
+            },
+            {
+              path: "applications",
+              element: <CompanyDashboardApplicationsScreen />,
+            },
+          ],
         },
         {
-          path: "/company-dashboard/create-job-vacancy",
-          element: <CompanyDashboardCreateJobVacancyScreen />,
-        },
-        {
-          path: "/company-dashboard/applications",
-          element: <CompanyDashboardApplicationsScreen />,
+          path: "jobseeker-dashboard",
+          children: [
+            {
+              path: "edit-profile",
+              element: <JobseekerDashboardEditProfileScreen />,
+            },
+            {
+              path: "applications",
+              element: <JobseekerDashboardApplicationsScreen />,
+            },
+          ],
         },
         {
           path: "/detail-application-job",
           element: <DetailApplication />,
-        }
+        },
       ]}
     />
   );

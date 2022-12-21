@@ -20,6 +20,7 @@ function applicationsController(fastify, options, done) {
 
         const newApplication = await prisma.application.create({
           data: {
+            coverLetter: request.body.coverLetter,
             jobVacancy: {
               connect: {
                 id: request.body.jobVacancyId,
@@ -53,7 +54,7 @@ function applicationsController(fastify, options, done) {
 
       if (request.query.jobseekerId && request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.tatus,
           OR: [
             {
               jobseeker: {
@@ -69,7 +70,7 @@ function applicationsController(fastify, options, done) {
         };
       } else if (request.query.jobseekerId && !request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.us,
           OR: [
             {
               jobseeker: {
@@ -80,7 +81,7 @@ function applicationsController(fastify, options, done) {
         };
       } else if (!request.query.jobseekerId && request.query.companyId) {
         where = {
-          status: request.query.status ?? "NOT_YET_RESPONDED",
+          // status: request.query.us,
           OR: [
             {
               jobVacancy: {
@@ -96,6 +97,32 @@ function applicationsController(fastify, options, done) {
       try {
         const applications = await prisma.application.findMany({
           where,
+          select: {
+            id: true,
+            status: true,
+            coverLetter: true,
+            jobVacancy: {
+              select: {
+                id: true,
+                title: true,
+                company: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+            jobseeker: {
+              select: {
+                id: true,
+                fullName: true,
+                description: true,
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
+          },
         });
 
         reply.status(200).send({
